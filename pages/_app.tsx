@@ -9,5 +9,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     </AuthProvider>
   );
 }
+// Teste de sintonização
 
 export default MyApp;

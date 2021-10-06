@@ -1,18 +1,12 @@
-import { createContext, ReactNode } from "react";
+// Packages
+import { createContext } from "react";
 
-type SignInCredentials = {
-  email: string;
-  password: string;
-};
-
-type AuthContextData = {
-  signIn(credentials: SignInCredentials): Promise<void>;
-  isAuthenticated: boolean;
-};
-
-type AuthProviderChildren = {
-  children: ReactNode;
-};
+// Types
+import {
+  AuthContextData,
+  AuthProviderChildren,
+  SignInCredentials,
+} from "./types";
 
 export const AuthContext = createContext({} as AuthContextData);
 

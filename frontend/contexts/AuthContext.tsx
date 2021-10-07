@@ -4,6 +4,9 @@ import { createContext, ReactNode, useState } from "react";
 // Services
 import { api } from "../services/api";
 
+// -------------------------------------------------
+// Types
+// -------------------------------------------------
 type User = {
   email: string;
   permissions: string[];
@@ -24,12 +27,27 @@ type AuthProviderChildren = {
   children: ReactNode;
 };
 
+// -------------------------------------------------
+// Context
+// -------------------------------------------------
 export const AuthContext = createContext({} as AuthContextData);
 
 export function AuthProvider({ children }: AuthProviderChildren) {
+  // -------------------------------------------------
+  // States
+  // -------------------------------------------------
+
   const [user, setUser] = useState<User>();
 
+  // -------------------------------------------------
+  // Constants
+  // -------------------------------------------------
+
   const isAuthenticated = false;
+
+  // -------------------------------------------------
+  // Functions
+  // -------------------------------------------------
 
   async function signIn({ email, password }: SignInCredentials) {
     try {
@@ -42,6 +60,10 @@ export function AuthProvider({ children }: AuthProviderChildren) {
       console.log(err);
     }
   }
+
+  // -------------------------------------------------
+  // Return
+  // -------------------------------------------------
 
   return (
     <AuthContext.Provider value={{ signIn, isAuthenticated }}>

@@ -1,11 +1,26 @@
+// Packages
 import { FormEvent, useContext, useState } from "react";
+
+// Context
 import { AuthContext } from "../contexts/AuthContext";
 
 export default function Home() {
+  // -------------------------------------------------
+  // States
+  // -------------------------------------------------
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // -------------------------------------------------
+  // Hooks
+  // -------------------------------------------------
+
   const { signIn } = useContext(AuthContext);
+
+  // -------------------------------------------------
+  // Functions
+  // -------------------------------------------------
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
@@ -17,6 +32,10 @@ export default function Home() {
 
     await signIn(data);
   }
+
+  // -------------------------------------------------
+  // Render
+  // -------------------------------------------------
 
   return (
     <form onSubmit={handleSubmit}>

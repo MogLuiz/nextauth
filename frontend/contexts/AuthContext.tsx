@@ -1,8 +1,14 @@
 // Packages
-import { createContext, ReactNode } from "react";
+import { createContext, ReactNode, useState } from "react";
 
 // Services
 import { api } from "../services/api";
+
+type User = {
+  email: string;
+  permissions: string[];
+  roles: string[];
+};
 
 type SignInCredentials = {
   email: string;
@@ -21,6 +27,8 @@ type AuthProviderChildren = {
 export const AuthContext = createContext({} as AuthContextData);
 
 export function AuthProvider({ children }: AuthProviderChildren) {
+  const [user, setUser] = useState<User>();
+
   const isAuthenticated = false;
 
   async function signIn({ email, password }: SignInCredentials) {

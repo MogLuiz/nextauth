@@ -2,6 +2,9 @@
 import { createContext, ReactNode, useState } from "react";
 import Router from "next/router";
 
+// Cookie
+import { setCookie } from "nookies";
+
 // Services
 import { api } from "../services/api";
 
@@ -58,7 +61,7 @@ export function AuthProvider({ children }: AuthProviderChildren) {
         password,
       });
 
-      const { permissions, roles } = response.data;
+      const { permissions, roles, token, refreshToken } = response.data;
 
       setUser({
         email,

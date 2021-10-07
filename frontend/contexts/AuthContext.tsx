@@ -1,5 +1,6 @@
 // Packages
 import { createContext, ReactNode, useState } from "react";
+import Router from "next/router";
 
 // Services
 import { api } from "../services/api";
@@ -63,6 +64,8 @@ export function AuthProvider({ children }: AuthProviderChildren) {
         permissions,
         roles,
       });
+
+      Router.push("/dashboard");
     } catch (err) {
       console.log(err);
     }

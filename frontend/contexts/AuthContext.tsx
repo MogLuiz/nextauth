@@ -1,12 +1,22 @@
 // Packages
-import { createContext } from "react";
+import { createContext, ReactNode } from "react";
 
-// Types
-import {
-  AuthContextData,
-  AuthProviderChildren,
-  SignInCredentials,
-} from "./types";
+// Services
+import { api } from "../services/api";
+
+type SignInCredentials = {
+  email: string;
+  password: string;
+};
+
+type AuthContextData = {
+  signIn(credentials: SignInCredentials): Promise<void>;
+  isAuthenticated: boolean;
+};
+
+type AuthProviderChildren = {
+  children: ReactNode;
+};
 
 export const AuthContext = createContext({} as AuthContextData);
 
@@ -14,7 +24,15 @@ export function AuthProvider({ children }: AuthProviderChildren) {
   const isAuthenticated = false;
 
   async function signIn({ email, password }: SignInCredentials) {
-    console.log({ email, password });
+    try {
+      const response = await api.post("sessions", {
+        email,
+        password,
+      });
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
